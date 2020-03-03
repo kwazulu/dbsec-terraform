@@ -1,4 +1,4 @@
-resource "oci_core_instance" "AV12cR2-bp11" {
+resource "oci_core_instance" "AVS" {
   agent_config {
     is_management_disabled = "false"
     is_monitoring_disabled = "false"
@@ -11,7 +11,7 @@ resource "oci_core_instance" "AV12cR2-bp11" {
     assign_public_ip = "true"
     defined_tags     = {}
 
-    display_name  = "AV12cR2-bp11"
+    display_name  = "Audit-Vault-Server"
 
     hostname_label = "av12211"
     nsg_ids        = []
@@ -21,7 +21,7 @@ resource "oci_core_instance" "AV12cR2-bp11" {
     subnet_id              = "${oci_core_subnet.dbsecsubnet.id}"
   }
 
-  display_name      = "AV12cR2-bp11"
+  display_name      = "Audit-Vault-Server"
   extended_metadata = {}
 
   fault_domain  = "FAULT-DOMAIN-1"
@@ -40,24 +40,24 @@ resource "oci_core_instance" "AV12cR2-bp11" {
     "ssh_authorized_keys" = "${var.ssh_public_key}"
   }
 
-  shape = "${var.shape_AV12cR2_bp11}"
+  shape = "${var.shape_AVServer}"
 
   source_details {
     boot_volume_size_in_gbs = "500"
 
-    source_id   = "${oci_core_image.Template_AV-12cR2-bp11.id}"
+    source_id   = "${var.avs_ocid}"
     source_type = "image"
   }
 
   state = "RUNNING"
 }
 
-resource "oci_core_instance_console_connection" "AV12cR2-bp11_console_connection" {
-    instance_id = "${oci_core_instance.AV12cR2-bp11.id}"
+resource "oci_core_instance_console_connection" "AVS_console_connection" {
+    instance_id = "${oci_core_instance.AVS.id}"
     public_key = "${var.ssh_public_key}"
 }
 
-resource "oci_core_instance" "DBF12cR2-bp11" {
+resource "oci_core_instance" "DBF" {
   agent_config {
     is_management_disabled = "false"
     is_monitoring_disabled = "false"
@@ -70,7 +70,7 @@ resource "oci_core_instance" "DBF12cR2-bp11" {
     assign_public_ip = "true"
     defined_tags     = {}
 
-    display_name  = "DBF12cR2-bp11"
+    display_name  = "Database-Firewall"
     freeform_tags = {}
 
     hostname_label = "dbf12211"
@@ -81,7 +81,7 @@ resource "oci_core_instance" "DBF12cR2-bp11" {
     subnet_id              = "${oci_core_subnet.dbsecsubnet.id}"
   }
 
-  display_name      = "DBF12cR2-bp11"
+  display_name      = "Database-Firewall"
 
   fault_domain  = "FAULT-DOMAIN-1"
 
@@ -98,24 +98,24 @@ resource "oci_core_instance" "DBF12cR2-bp11" {
     "ssh_authorized_keys" = "${var.ssh_public_key}"
   }
 
-  shape = "${var.shape_DBF_12cR2_bp11}"
+  shape = "${var.shape_DBFServer}"
 
   source_details {
     boot_volume_size_in_gbs = "256"
 
-    source_id   = "${oci_core_image.Template_DBF-12cR2-bp11.id}"
+    source_id   = "${var.dbf_ocid}"
     source_type = "image"
   }
 
   state = "RUNNING"
 }
 
-resource "oci_core_instance_console_connection" "DBF12cR2-bp11_console_connection" {
-    instance_id = "${oci_core_instance.DBF12cR2-bp11.id}"
+resource "oci_core_instance_console_connection" "DBF_console_connection" {
+    instance_id = "${oci_core_instance.DBF.id}"
     public_key = "${var.ssh_public_key}"
 }
 
-resource "oci_core_instance" "DBSec_Lab" {
+resource "oci_core_instance" "DBSec-Lab" {
   agent_config {
     is_management_disabled = "false"
     is_monitoring_disabled = "false"
@@ -128,7 +128,7 @@ resource "oci_core_instance" "DBSec_Lab" {
     assign_public_ip = "true"
     defined_tags     = {}
 
-    display_name  = "DBSec_Lab"
+    display_name  = "DBSec-Lab"
     freeform_tags = {}
 
     hostname_label = "dbsec-lab"
@@ -139,7 +139,7 @@ resource "oci_core_instance" "DBSec_Lab" {
     subnet_id              = "${oci_core_subnet.dbsecsubnet.id}"
   }
 
-  display_name      = "DBSec_Lab"
+  display_name      = "DBSec-Lab"
   fault_domain  = "FAULT-DOMAIN-1"
 
   launch_options {
@@ -160,7 +160,7 @@ resource "oci_core_instance" "DBSec_Lab" {
   source_details {
     boot_volume_size_in_gbs = "1000"
 
-    source_id   = "${oci_core_image.Template_DBSec-Lab.id}"
+    source_id   = "${var.dbl_ocid}"
     source_type = "image"
   }
 
@@ -168,11 +168,11 @@ resource "oci_core_instance" "DBSec_Lab" {
 }
 
 resource "oci_core_instance_console_connection" "DBSec_Lab_console_connection" {
-    instance_id = "${oci_core_instance.DBSec_Lab.id}"
+    instance_id = "${oci_core_instance.DBSec-Lab.id}"
     public_key = "${var.ssh_public_key}"
 }
 
-resource oci_core_instance OKV18cR2 {
+resource "oci_core_instance" "OKV" {
   agent_config {
     is_management_disabled = "false"
     is_monitoring_disabled = "false"
@@ -185,7 +185,7 @@ resource oci_core_instance OKV18cR2 {
     assign_public_ip = "true"
     defined_tags     = {}
 
-    display_name  = "OKV18cR2"
+    display_name  = "Key-Vault-Server"
 
     hostname_label = "okv182"
     nsg_ids        = []
@@ -197,7 +197,7 @@ resource oci_core_instance OKV18cR2 {
 
   defined_tags = {}
 
-  display_name      = "OKV18cR2"
+  display_name      = "Key-Vault-Server2"
   extended_metadata = {}
 
   fault_domain  = "FAULT-DOMAIN-1"
@@ -215,19 +215,19 @@ resource oci_core_instance OKV18cR2 {
     "ssh_authorized_keys" = "${var.ssh_public_key}"
   }
 
-  shape = "${var.shape_OKV_18cR2}"
+  shape = "${var.shape_OKVServer}"
 
   source_details {
     boot_volume_size_in_gbs = "256"
 
-    source_id   = "${oci_core_image.Template_OKV-18cR2.id}"
+    source_id   = "${var.okv_ocid}"
     source_type = "image"
   }
 
   state = "RUNNING"
 }
 
-resource "oci_core_instance_console_connection" "OKV18cR2_console_connection" {
-    instance_id = "${oci_core_instance.OKV18cR2.id}"
+resource "oci_core_instance_console_connection" "OKV_console_connection" {
+    instance_id = "${oci_core_instance.OKV.id}"
     public_key = "${var.ssh_public_key}"
 }

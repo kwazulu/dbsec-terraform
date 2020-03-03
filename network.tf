@@ -5,9 +5,8 @@ resource "oci_core_vcn" "DBSec_VCN_tf" {
   display_name = "DBSec_VCN_tf"
 }
 
-resource "oci_core_dhcp_options" "Default-DHCP-Options-for-DBSec_VCN_tf" {
-  vcn_id = "${oci_core_vcn.DBSec_VCN_tf.id}"
-  compartment_id = "${var.compartment_ocid}"
+resource "oci_core_default_dhcp_options" "Default-DHCP-Options-for-DBSec_VCN_tf" {
+  manage_default_resource_id = "${oci_core_vcn.DBSec_VCN_tf.default_dhcp_options_id}"
   display_name = "Default DHCP Options for DBSec_VCN_tf"
 
   options {
@@ -28,10 +27,9 @@ resource "oci_core_internet_gateway" "Internet-Gateway-DBSec_VCN_tf" {
   vcn_id = "${oci_core_vcn.DBSec_VCN_tf.id}"
 }
 
-resource "oci_core_route_table" "Default-Route-Table-for-DBSec_VCN_tf" {
-  compartment_id = "${var.compartment_ocid}"
-  vcn_id = "${oci_core_vcn.DBSec_VCN_tf.id}"
-  display_name = "Default-Route-Table-for-DBSec_VCN_tf"
+resource "oci_core_default_route_table" "Default-Route-Table-for-DBSec_VCN_tf" {
+  manage_default_resource_id = "${oci_core_vcn.DBSec_VCN_tf.default_route_table_id}"
+  display_name = "Default Route Table for DBSec_VCN_tf"
 
   route_rules {
     destination       = "0.0.0.0/0"
@@ -40,10 +38,9 @@ resource "oci_core_route_table" "Default-Route-Table-for-DBSec_VCN_tf" {
   }
 }
 
-resource "oci_core_security_list" "Default-Security-List-for-DBSec_VCN_tf" {
-  vcn_id = "${oci_core_vcn.DBSec_VCN_tf.id}"
-  compartment_id = "${var.compartment_ocid}"  
-  display_name = "Default-Security-List-for-DBSec_VCN_tf"
+resource "oci_core_default_security_list" "Default-Security-List-for-DBSec_VCN_tf" {
+  manage_default_resource_id = "${oci_core_vcn.DBSec_VCN_tf.default_security_list_id}" 
+  display_name = "Default Security List for DBSec_VCN_tf"
 
 // allow outbound tcp traffic on all ports
   egress_security_rules {
