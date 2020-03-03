@@ -21,3 +21,6 @@ variable shape_DBSec_Lab{ default = "VM.Standard2.4" }
 variable shape_AV12cR2_bp11{ default = "VM.Standard2.2" }
 variable shape_OKV_18cR2{ default = "VM.Standard2.2" }
 variable shape_DBF_12cR2_bp11{ default = "VM.Standard2.2" }
+
+variable bucketname
+variable O=objectname

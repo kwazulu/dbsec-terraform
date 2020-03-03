@@ -64,7 +64,7 @@ resource "oci_core_security_list" "Default-Security-List-for-DBSec_VCN_tf" {
   defined_tags = {}
 
   vcn_id = "${oci_core_vcn.DBSec_VCN_tf.id}"
-  compartment_id = "${var.compartment_ocid}"
+  compartment_id = "${var.compartment_ocid}"  
 
   display_name = "Default Security List for DBSec_VCN_tf"
 
@@ -84,7 +84,6 @@ resource "oci_core_security_list" "Default-Security-List-for-DBSec_VCN_tf" {
     stateless   = "false"
   }
 
-  ##manage_default_resource_id = "${oci_core_vcn.DBSec_VCN_tf.default_security_list_id}"
 }
 
 resource "oci_core_subnet" "dbsecsubnet" {
