@@ -64,7 +64,7 @@ resource "oci_core_default_security_list" "Default-Security-List-for-DBSec_VCN_t
   ingress_security_rules {
     protocol  = "6"         
     source    = "0.0.0.0/0"
-    stateless = false
+    stateless = true
 
     tcp_options {
       min = 22
@@ -82,8 +82,17 @@ resource "oci_core_default_security_list" "Default-Security-List-for-DBSec_VCN_t
       type = 3
       code = 4
     }
-  }
+  }   
+  
+
+  // allow inbound icmp traffic of a specific type
+  ingress_security_rules {
+    protocol  = "all"
+    source    = "10.0.0.0/16"
+    stateless = true
+   }  
 }
+
 
 resource "oci_core_subnet" "dbsecsubnet" {
   cidr_block        = "10.0.0.0/24"
