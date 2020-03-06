@@ -43,28 +43,20 @@ resource "oci_core_default_security_list" "Default-Security-List-for-DBSec_VCN_t
   display_name = "Default Security List for DBSec_VCN_tf"
 
 // allow outbound tcp traffic on all ports
-  egress_security_rules {
-    destination = "0.0.0.0/0"
-    protocol    = "6"
-  }
+  
 
   // allow outbound udp traffic on a port range
   egress_security_rules {
     destination = "0.0.0.0/0"
-    protocol    = "17"        
-    stateless   = true
-
-    udp_options {
-      min = 319
-      max = 320
-    }
+    protocol    = "all"        
+    stateless   = false
   }
 
   // allow inbound ssh traffic
   ingress_security_rules {
     protocol  = "6"         
     source    = "0.0.0.0/0"
-    stateless = true
+    stateless = false
 
     tcp_options {
       min = 22
@@ -76,7 +68,7 @@ resource "oci_core_default_security_list" "Default-Security-List-for-DBSec_VCN_t
   ingress_security_rules {
     protocol  = 1
     source    = "0.0.0.0/0"
-    stateless = true
+    stateless = false
 
     icmp_options {
       type = 3
@@ -89,7 +81,7 @@ resource "oci_core_default_security_list" "Default-Security-List-for-DBSec_VCN_t
   ingress_security_rules {
     protocol  = "all"
     source    = "10.0.0.0/16"
-    stateless = true
+    stateless = false
    }  
 }
 

@@ -197,7 +197,7 @@ resource "oci_core_instance" "OKV" {
 
   defined_tags = {}
 
-  display_name      = "Key-Vault-Server2"
+  display_name      = "Key-Vault-Server"
   extended_metadata = {}
 
   fault_domain  = "FAULT-DOMAIN-1"
