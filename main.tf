@@ -1,7 +1,7 @@
 
 
-create a compartment
+#create a compartment
 
-create a vnc inside this new compartment
+#create a vnc inside this new compartment
 
-spin up the instances in this new compartment
+#spin up the instances in this new compartment
